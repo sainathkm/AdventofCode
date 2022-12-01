@@ -35,9 +35,6 @@ export const load: PageServerLoad = async () => {
 	// Sum of the top 3 numbers
 	const top3sum = top3.reduce((a, b) => a + b, 0);
 
-	console.log(highest);
-	console.log(top3sum);
-
 	// Return the results
 	return { highest, top3sum };
 };
