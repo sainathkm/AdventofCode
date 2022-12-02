@@ -7,13 +7,16 @@ export const load: PageServerLoad = async () => {
 	//split the data into an array
 	const dataArray = data.split('\n');
 
-	//Replace the A with B
-	const dataReplace1 = dataArray.map((num) => num.replace(/A/g, '1'));
-	const dataReplace2 = dataReplace1.map((num) => num.replace(/B/g, '2'));
-	const dataReplace3 = dataReplace2.map((num) => num.replace(/C/g, '3'));
-	const dataReplace4 = dataReplace3.map((num) => num.replace(/X/g, '1'));
-	const dataReplace5 = dataReplace4.map((num) => num.replace(/Y/g, '2'));
-	const dataReplace = dataReplace5.map((num) => num.replace(/Z/g, '3'));
+	// Replace the array with an array of objects of Number
+	const dataReplace = dataArray.map((num) =>
+		num
+			.replace(/A/g, '1')
+			.replace(/B/g, '2')
+			.replace(/C/g, '3')
+			.replace(/X/g, '1')
+			.replace(/Y/g, '2')
+			.replace(/Z/g, '3')
+	);
 
 	let ScoreElfPart1 = 0;
 	let ScoreElfPart2 = 0;
