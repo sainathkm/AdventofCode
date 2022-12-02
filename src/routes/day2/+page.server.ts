@@ -8,7 +8,7 @@ export const load: PageServerLoad = async () => {
 	const dataArray = data.split('\n');
 
 	// Replace the array with an array of objects of Number
-	const dataReplace = dataArray.map((cont) =>
+	const dataReplaceArray = dataArray.map((cont) =>
 		cont
 			.replace(/A/g, '1')
 			.replace(/B/g, '2')
@@ -27,22 +27,22 @@ export const load: PageServerLoad = async () => {
 	// 1 < 2 - 2 Paper wins
 
 	// Loop through the array
-	for (let i = 0; i < dataReplace.length; i++) {
-		ScoreElfPart1 = ScoreElfPart1 + parseInt(dataReplace[i][2]);
-		if (dataReplace[i][0] != dataReplace[i][2]) {
-			if (dataReplace[i][2] == '3') {
+	for (let i = 0; i < dataReplaceArray.length; i++) {
+		ScoreElfPart1 = ScoreElfPart1 + parseInt(dataReplaceArray[i][2]);
+		if (dataReplaceArray[i][0] != dataReplaceArray[i][2]) {
+			if (dataReplaceArray[i][2] == '3') {
 				// 3 > 2 - 3 Scissor wins
-				if (dataReplace[i][0] == '2') {
+				if (dataReplaceArray[i][0] == '2') {
 					ScoreElfPart1 = ScoreElfPart1 + 6;
 				}
-			} else if (dataReplace[i][2] == '2') {
+			} else if (dataReplaceArray[i][2] == '2') {
 				// 1 < 2 - 2 Paper wins
-				if (dataReplace[i][0] == '1') {
+				if (dataReplaceArray[i][0] == '1') {
 					ScoreElfPart1 = ScoreElfPart1 + 6;
 				}
-			} else if (dataReplace[i][2] == '1') {
+			} else if (dataReplaceArray[i][2] == '1') {
 				// 3 < 1 - 1 Rock wins
-				if (dataReplace[i][0] == '3') {
+				if (dataReplaceArray[i][0] == '3') {
 					ScoreElfPart1 = ScoreElfPart1 + 6;
 				}
 			}
@@ -59,26 +59,26 @@ export const load: PageServerLoad = async () => {
 
 	// X means you need to lose, Y means you need to end the round in a draw, and Z means you need to win.
 	// Loop through the array
-	for (let i = 0; i < dataReplace.length; i++) {
+	for (let i = 0; i < dataReplaceArray.length; i++) {
 		if (dataArray[i][2] == 'X') {
 			// You need to lose
-			if (dataReplace[i][0] == '1') {
+			if (dataReplaceArray[i][0] == '1') {
 				ScoreElfPart2 = ScoreElfPart2 + 3;
-			} else if (dataReplace[i][0] == '2') {
+			} else if (dataReplaceArray[i][0] == '2') {
 				ScoreElfPart2 = ScoreElfPart2 + 1;
-			} else if (dataReplace[i][0] == '3') {
+			} else if (dataReplaceArray[i][0] == '3') {
 				ScoreElfPart2 = ScoreElfPart2 + 2;
 			}
 		} else if (dataArray[i][2] == 'Y') {
 			// You need to end the round in a draw
-			ScoreElfPart2 = ScoreElfPart2 + parseInt(dataReplace[i][0]) + 3;
+			ScoreElfPart2 = ScoreElfPart2 + parseInt(dataReplaceArray[i][0]) + 3;
 		} else if (dataArray[i][2] == 'Z') {
 			// You need to win
-			if (dataReplace[i][0] == '1') {
+			if (dataReplaceArray[i][0] == '1') {
 				ScoreElfPart2 = ScoreElfPart2 + 2 + 6;
-			} else if (dataReplace[i][0] == '2') {
+			} else if (dataReplaceArray[i][0] == '2') {
 				ScoreElfPart2 = ScoreElfPart2 + 3 + 6;
-			} else if (dataReplace[i][0] == '3') {
+			} else if (dataReplaceArray[i][0] == '3') {
 				ScoreElfPart2 = ScoreElfPart2 + 1 + 6;
 			}
 		}
