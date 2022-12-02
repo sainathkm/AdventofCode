@@ -8,8 +8,8 @@ export const load: PageServerLoad = async () => {
 	const dataArray = data.split('\n');
 
 	// Replace the array with an array of objects of Number
-	const dataReplace = dataArray.map((num) =>
-		num
+	const dataReplace = dataArray.map((cont) =>
+		cont
 			.replace(/A/g, '1')
 			.replace(/B/g, '2')
 			.replace(/C/g, '3')
@@ -69,11 +69,9 @@ export const load: PageServerLoad = async () => {
 			} else if (dataReplace[i][0] == '3') {
 				ScoreElfPart2 = ScoreElfPart2 + 2;
 			}
-			console.log(dataArray[i][0], dataArray[i][2], dataReplace[i][0], 0, ' Loss - X');
 		} else if (dataArray[i][2] == 'Y') {
 			// You need to end the round in a draw
 			ScoreElfPart2 = ScoreElfPart2 + parseInt(dataReplace[i][0]) + 3;
-			console.log(dataArray[i][0], dataArray[i][2], dataReplace[i][0], 3, ' Draw Y ');
 		} else if (dataArray[i][2] == 'Z') {
 			// You need to win
 			if (dataReplace[i][0] == '1') {
@@ -83,7 +81,6 @@ export const load: PageServerLoad = async () => {
 			} else if (dataReplace[i][0] == '3') {
 				ScoreElfPart2 = ScoreElfPart2 + 1 + 6;
 			}
-			console.log(dataArray[i][0], dataArray[i][2], dataReplace[i][0], 6, ' Win - Z');
 		}
 	}
 
