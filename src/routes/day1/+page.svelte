@@ -5,7 +5,7 @@
 	export let data: PageData;
 </script>
 
-<div class="bg-white dark:bg-gray-900 ">
+<div class="bg-white ">
 	<div class="px-8 pt-8 overflow-hidden sm:pt-12 lg:relative lg:py-48">
 		<h1 class="text-4xl font-bold tracking-tight sm:text-4xl text-yellow-600">
 			Advent of Code Project 2022 - Day 1
