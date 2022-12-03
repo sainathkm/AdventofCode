@@ -2,4 +2,4 @@
 
 ## Project using Typescript, Sveltekit
 
-### Deplyed at https://adventofcode2022.vercel.app/
+### Deployed at https://adventofcode2022.vercel.app/
