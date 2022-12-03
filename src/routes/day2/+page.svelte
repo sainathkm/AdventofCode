@@ -18,10 +18,10 @@
 		<div class="pt-3 pb-3">
 			<ul>
 				<li>
-					Highest Calories Carried: <strong> {data.ScoreElfPart1} </strong>
+					Part One Result: <strong> {data.ScoreElfPart1} </strong>
 				</li>
 				<li>
-					Sum of top 3 Calories Carried: <strong> {data.ScoreElfPart2} </strong>
+					Part Two Result: <strong> {data.ScoreElfPart2} </strong>
 				</li>
 			</ul>
 		</div>
