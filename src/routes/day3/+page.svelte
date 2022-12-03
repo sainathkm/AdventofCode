@@ -8,7 +8,7 @@
 <div class="bg-white ">
 	<div class="px-8 pt-8 overflow-hidden sm:pt-12 lg:relative lg:py-48">
 		<h1 class="text-4xl font-bold tracking-tight sm:text-4xl text-yellow-600">
-			Advent of Code Project 2022 - Day 3
+			Advent of Code 2022 - Day 3
 		</h1>
 		<p class=" tracking-tight sm:text-xl">
 			Visit <a href="https://adventofcode.com/2022/day/3" class="underline text-yellow-700">day 3</a
