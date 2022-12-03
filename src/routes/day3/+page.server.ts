@@ -2,7 +2,9 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
 	//fetch data from the txt file
-	const data = await fetch('http://localhost:5174/day3.txt').then((res) => res.text());
+	const data = await fetch('https://adventofcode2022.vercel.app/day3.txt').then((res) =>
+		res.text()
+	);
 
 	//split the data into an array
 	const dataArray = data.split('\n');
