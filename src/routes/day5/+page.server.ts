@@ -6,8 +6,7 @@ export const load: PageServerLoad = async () => {
 		res.text()
 	);
 
-
-	// [N]         [C]     [Z]            
+	// [N]         [C]     [Z]
 	// [Q] [G]     [V]     [S]         [V]
 	// [L] [C]     [M]     [T]     [W] [L]
 	// [S] [H]     [L]     [C] [D] [H] [S]
@@ -15,22 +14,19 @@ export const load: PageServerLoad = async () => {
 	// [Z] [T] [Z] [T] [C] [J] [G] [S] [Q]
 	// [P] [P] [C] [W] [W] [F] [W] [J] [C]
 	// [T] [L] [D] [G] [P] [P] [V] [N] [R]
-	//  1   2   3   4   5   6   7   8   9 
+	//  1   2   3   4   5   6   7   8   9
 
-	let CrateStackArray[1][] = ['T', 'P', 'Z', 'C', 'S', 'L', 'Q', 'N'];
-	let CrateStackArray[2][] = ['L', 'P', 'T', 'V', 'H', 'C', 'G'];
-	let CrateStackArray[3][] = ['D', 'C', 'Z', 'F'];
-	let CrateStackArray[4][] = ['G', 'W', 'T', 'D', 'L', 'M', 'C', 'V'];
-	let CrateStackArray[5][] = ['P', 'W', 'C'];
-	let CrateStackArray[6][] = ['P', 'F', 'J', 'D', 'C', 'T', 'S', 'Z'];
-	let CrateStackArray[7][] = ['V', 'W', 'G', 'B', 'D'];
-	let CrateStackArray[8][] = ['N', 'J', 'S', 'Q', 'H', 'W'];
-	let CrateStackArray[9][] = ['R', 'C', 'Q', 'F', 'S', 'L', 'V'];
-
-
-
-
-
+	let CrateStackArray: string[][] = [
+		['T', 'P', 'Z', 'C', 'S', 'L', 'Q', 'N'],
+		['L', 'P', 'T', 'V', 'H', 'C', 'G'],
+		['D', 'C', 'Z', 'F'],
+		['G', 'W', 'T', 'D', 'L', 'M', 'C', 'V'],
+		['P', 'W', 'C'],
+		['P', 'F', 'J', 'D', 'C', 'T', 'S', 'Z'],
+		['V', 'W', 'G', 'B', 'D'],
+		['N', 'J', 'S', 'Q', 'H', 'W'],
+		['R', 'C', 'Q', 'F', 'S', 'L', 'V']
+	];
 
 	//split the data into an array
 	const dataArray = data.split('\n');
@@ -41,7 +37,8 @@ export const load: PageServerLoad = async () => {
 
 	// Loop through the array for Part 1
 	for (let i = 0; i < dataArray.length; i++) {
-		const sectionArray = dataArray[i].split(',');
+		const sectionArray = dataArray[i].split('from');
+		console.log(sectionArray);
 	}
 
 	// Return the results
