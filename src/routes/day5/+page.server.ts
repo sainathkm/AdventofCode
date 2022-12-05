@@ -62,34 +62,20 @@ export const load: PageServerLoad = async () => {
 		const movefrom = parseInt(sectionArray[i][3]);
 		const moveto = parseInt(sectionArray[i][5]);
 
-		let crateStack2TempArray: string[] = [];
+		const crateStack2TempArray: string[] = [];
 		let k = 1;
 
 		for (let j = 0; j < howmanytoMove; j++) {
-			// Move the crate
-			const crate1 = crateStack1Array[movefrom - 1].pop();
-			crateStack1Array[moveto - 1].push(crate1);
+			// Move the crate for part 1
+			crateStack1Array[moveto - 1].push(crateStack1Array[movefrom - 1].pop() as string);
 
-			// Move the crate
-			const crate2 = crateStack2Array[movefrom - 1].pop();
-			crateStack2TempArray[howmanytoMove - k] = crate2;
+			// Move the crate for part 2
+			crateStack2TempArray[howmanytoMove - k] = crateStack2Array[movefrom - 1].pop() as string;
 			k++;
 		}
 
-		// Move the crateSrack2TempArray to crateStack2Array push
+		// Push the crateSrack2TempArray to crateStack2Array
 		crateStack2Array[moveto - 1].push(...crateStack2TempArray);
-
-		// console.log(i, howmanytoMove, movefrom, moveto);
-
-		// console.log('1 : ' + crateStack2Array[0]);
-		// console.log('2 : ' + crateStack2Array[1]);
-		// console.log('3 : ' + crateStack2Array[2]);
-		// console.log('4 : ' + crateStack2Array[3]);
-		// console.log('5 : ' + crateStack2Array[4]);
-		// console.log('6 : ' + crateStack2Array[5]);
-		// console.log('7 : ' + crateStack2Array[6]);
-		// console.log('8 : ' + crateStack2Array[7]);
-		// console.log('9 : ' + crateStack2Array[8]);
 	}
 
 	// Loop through the crate stack array
