@@ -8,10 +8,10 @@
 <div class="bg-white ">
 	<div class="px-8 pt-8 overflow-hidden sm:pt-12 lg:relative lg:py-48">
 		<h1 class="text-4xl font-bold tracking-tight sm:text-4xl text-yellow-600">
-			Advent of Code 2022 - Day 5
+			Advent of Code 2022 - Day 6
 		</h1>
 		<p class=" tracking-tight sm:text-xl">
-			Visit <a href="https://adventofcode.com/2022/day/5" class="underline text-yellow-700">day 5</a
+			Visit <a href="https://adventofcode.com/2022/day/6" class="underline text-yellow-700">day 6</a
 			> to read the documentation
 		</p>
 
