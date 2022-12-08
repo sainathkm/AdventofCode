@@ -1,4 +1,3 @@
-import { each } from 'svelte/internal';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
@@ -15,42 +14,42 @@ export const load: PageServerLoad = async () => {
 	const lines = input.split('\n');
 
 	// parse input
-	const root: Directory = { name: '/', parent: null, files: [], directories: {} };
-	let currentDirectory = root;
-	let currentlyListing = false;
+	const root: Directory = { name: '/', parent: null, files: [], directorieslist: {} };
+	let currentDir = root;
+	let currentLis = false;
 
 	for (const line of lines) {
 		if (line.startsWith('$ cd ')) {
 			// changes directory
-			currentlyListing = false;
+			currentLis = false;
 			const path = line.slice(5);
 			if (path === '/') {
-				currentDirectory = root;
+				currentDir = root;
 			} else if (path === '..') {
-				currentDirectory = currentDirectory.parent ? currentDirectory.parent : root;
+				currentDir = currentDir.parent ? currentDir.parent : root;
 			} else {
-				if (!currentDirectory.directories.hasOwnProperty(path))
+				if (!currentDir.directorieslist.hasOwnProperty(path))
 					throw new Error(`Invalid path: ${path} at ${line}`);
-				currentDirectory = currentDirectory.directories[path];
+				currentDir = currentDir.directorieslist[path];
 			}
 		} else if (line === '$ ls') {
 			// lists directory contents
-			currentlyListing = true;
+			currentLis = true;
 		} else if (line.startsWith('dir ')) {
 			// starts with dir, is a directory
 			const name = line.slice(4);
-			if (!currentDirectory.directories.hasOwnProperty(name)) {
-				currentDirectory.directories[name] = {
+			if (!currentDir.directorieslist.hasOwnProperty(name)) {
+				currentDir.directorieslist[name] = {
 					name,
-					parent: currentDirectory,
+					parent: currentDir,
 					files: [],
-					directories: {}
+					directorieslist: {}
 				};
 			}
 		} else if (line.match(/^\d+ .+$/)) {
 			// starts with number, is a size & file
 			const [size, name] = line.split(' ');
-			currentDirectory.files.push({ name, size: Number(size) });
+			currentDir.files.push({ name, size: Number(size) });
 		} else if (line === '') {
 			continue;
 		} else {
@@ -60,8 +59,8 @@ export const load: PageServerLoad = async () => {
 
 	const sizes: { name: string; size: number }[] = [];
 	function part1(dir: Directory = root) {
-		for (const [name, directory] of Object.entries(dir.directories)) {
-			sizes.push({ name, size: calculateDirectorySize(directory) });
+		for (const [name, directory] of Object.entries(dir.directorieslist)) {
+			sizes.push({ name, size: calcDirSize(directory) });
 			part1(directory);
 		}
 	}
@@ -72,25 +71,25 @@ export const load: PageServerLoad = async () => {
 	const TOTAL_DISK_SIZE = 70_000_000;
 	const NEED_FREE = 30_000_000;
 
-	const currentUsed = calculateDirectorySize(root);
+	const currentUsed = calcDirSize(root);
 	const currentFree = TOTAL_DISK_SIZE - currentUsed;
 	const needToFree = NEED_FREE - currentFree;
 
 	part2Result = sizes.find((s) => s.size > needToFree)?.size;
 
-	function currentPath(directory: Directory | null): string {
+	function currentLoc(directory: Directory | null): string {
 		if (directory?.parent === root) return '/';
 		if (!directory?.parent) return '/';
-		return currentPath(directory.parent) + directory.parent.name + '/';
+		return currentLoc(directory.parent) + directory.parent.name + '/';
 	}
 
-	function calculateDirectorySize(directory: Directory): number {
+	function calcDirSize(directory: Directory): number {
 		let size = 0;
 		for (const file of directory.files) {
 			size += file.size;
 		}
-		for (const subdirectory of Object.values(directory.directories)) {
-			size += calculateDirectorySize(subdirectory);
+		for (const subdirectory of Object.values(directory.directorieslist)) {
+			size += calcDirSize(subdirectory);
 		}
 		return size;
 	}
@@ -103,7 +102,7 @@ export const load: PageServerLoad = async () => {
 	interface Directory {
 		name: string;
 		files: File[];
-		directories: {
+		directorieslist: {
 			[name: string]: Directory;
 		};
 		parent: Directory | null;
